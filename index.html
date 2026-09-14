@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Do Susto à Rotina — Guia Visual para o Diabetes Tipo 2</title>
+<meta name="description" content="Um guia visual e direto para transformar o diagnóstico de diabetes tipo 2 em uma rotina simples de alimentação, movimento e sono.">
+<style>
+  /* ============================================
+     TOKENS
+     ============================================ */
+  :root{
+    --paper: #F5F1E6;
+    --paper-deep: #ECE4D2;
+    --ink: #2B2118;
+    --ink-soft: #6B5D4F;
+    --wine: #6E2A34;
+    --wine-deep: #501D25;
+    --sage: #7C9473;
+    --sage-deep: #5A7052;
+    --butter: #E8B23D;
+    --line: rgba(43,33,24,0.14);
+    --line-strong: rgba(43,33,24,0.28);
+    --font-display: "Georgia", "Iowan Old Style", serif;
+    --font-body: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    --max: 1100px;
+    --narrow: 720px;
+  }
+
+  *{ box-sizing:border-box; }
+  html{ scroll-behavior: smooth; }
+
+  body{
+    margin:0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--font-body);
+    font-size: 17px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1,h2,h3{
+    font-family: var(--font-display);
+    color: var(--wine-deep);
+    margin: 0 0 0.5em 0;
+    line-height: 1.15;
+    font-weight: 700;
+  }
+  p{ margin: 0 0 1em 0; }
+  ul,ol{ margin:0; padding:0; list-style:none; }
+  a{ color:inherit; text-decoration:none; }
+  svg{ display:block; }
+
+  .wrap{ max-width: var(--max); margin:0 auto; padding: 0 28px; }
+  .narrow{ max-width: var(--narrow); }
+  .section{ padding: 88px 0; }
+  .section-title{ font-size: clamp(1.5rem, 1.15rem + 1.2vw, 2.05rem); margin-bottom: 40px; }
+
+  a:focus-visible, button:focus-visible{ outline: 2px solid var(--wine); outline-offset: 3px; }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ animation:none !important; transition:none !important; scroll-behavior:auto !important; }
+  }
+
+  .icon{ width: 30px; height: 30px; color: var(--wine); flex-shrink:0; }
+
+  /* ============================================
+     HEADER
+     ============================================ */
+  .topbar{
+    position: sticky; top:0; z-index: 50;
+    background: rgba(245,241,230,0.92);
+    backdrop-filter: blur(6px);
+    border-bottom: 1px solid var(--line);
+  }
+  .topbar-inner{ display:flex; align-items:center; justify-content:space-between; padding: 16px 0; }
+  .brand{ font-family: var(--font-display); font-weight: 700; font-size: 1.15rem; color: var(--wine-deep); }
+
+  /* ============================================
+     BUTTONS
+     ============================================ */
+  .btn{
+    display:inline-flex; align-items:center; justify-content:center;
+    padding: 14px 28px; border-radius: 999px; font-weight: 700; font-size: 0.96rem;
+    border: 2px solid transparent; cursor:pointer;
+    transition: transform 0.15s ease, background 0.15s ease;
+  }
+  .btn:hover{ transform: translateY(-1px); }
+  .btn-primary{ background: var(--wine); color: var(--paper); }
+  .btn-primary:hover{ background: var(--wine-deep); }
+  .btn-large{ padding: 18px 36px; font-size: 1.05rem; }
+  .btn-sm{ padding: 9px 20px; font-size: 0.85rem; }
+  .btn-outline{ background:transparent; border-color: var(--line-strong); color: var(--wine-deep); }
+  .btn-outline:hover{ border-color: var(--wine); }
+
+  /* ============================================
+     HERO
+     ============================================ */
+  .hero{ padding: 64px 0 40px 0; }
+  .hero-grid{ display:grid; grid-template-columns: 1fr 0.85fr; gap: 50px; align-items:center; }
+
+  .eyebrow{
+    display:inline-block;
+    font-size: 0.9rem; color: var(--sage-deep); font-weight: 600;
+    padding: 6px 14px; border: 1px solid var(--sage); border-radius: 999px;
+    margin-bottom: 22px;
+  }
+  .hero h1{ font-size: clamp(2rem, 1.3rem + 2.6vw, 3rem); }
+  .hero-lead{ font-size: 1.12rem; color: var(--ink-soft); max-width: 48ch; }
+  .hero-actions{ display:flex; align-items:center; gap: 22px; flex-wrap:wrap; margin: 28px 0; }
+
+  .trust-row{ display:flex; gap: 26px; flex-wrap: wrap; padding-top: 22px; border-top: 1px solid var(--line); color: var(--ink-soft); font-size: 0.9rem; }
+  .trust-row strong{ color: var(--wine-deep); font-family: var(--font-display); font-size: 1.1rem; display:block; }
+
+  /* --- ilustração: relógio de rotina (hero) --- */
+  .routine-ring{ display:flex; justify-content:center; }
+  .ring-node text{ font-family: var(--font-body); font-size: 8px; fill: var(--ink-soft); }
+  .ring-icon{ color: var(--wine); }
+
+  /* ============================================
+     PROBLEMA
+     ============================================ */
+  .problema{ background: var(--paper-deep); border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
+  .problema-grid{ display:grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items:start; }
+  .check-list li{ display:flex; gap: 14px; padding: 14px 0; border-bottom: 1px solid var(--line); color: var(--ink-soft); }
+  .check-list li:first-child{ padding-top:0; }
+  .check-mark{ flex-shrink:0; width:22px; height:22px; color: var(--wine); margin-top: 2px; }
+
+  /* ============================================
+     ANTES / DEPOIS — ilustração central
+     ============================================ */
+  .comparativo{ background: var(--paper); }
+  .compare-grid{ display:grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+  .compare-panel{ background: var(--paper-deep); border-radius: 14px; padding: 28px; text-align:center; }
+  .compare-panel h3{ font-size: 1.05rem; margin: 14px 0 6px 0; }
+  .compare-panel p{ color: var(--ink-soft); font-size: 0.92rem; margin:0; }
+  .compare-panel.depois{ background: rgba(124,148,115,0.14); }
+
+  /* ============================================
+     CAPÍTULOS
+     ============================================ */
+  .capitulos{ background: var(--paper-deep); border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
+  .chapter-list{ border-top: 1px solid var(--line-strong); }
+  .chapter-item{ display:grid; grid-template-columns: 44px 1fr; gap: 20px; padding: 24px 0; border-bottom: 1px solid var(--line); }
+  .chapter-item h3{ font-size: 1.1rem; margin-bottom: 6px; color: var(--ink); }
+  .chapter-item p{ color: var(--ink-soft); margin:0; max-width: 58ch; font-size: 0.96rem; }
+
+  /* ============================================
+     BÔNUS
+     ============================================ */
+  .bonus-grid{ display:grid; grid-template-columns: repeat(3,1fr); gap: 30px; }
+  .bonus-card{ text-align:left; }
+  .bonus-card h3{ font-size: 1.05rem; margin: 14px 0 6px 0; }
+  .bonus-card p{ color: var(--ink-soft); font-size: 0.94rem; margin:0; }
+
+  /* ============================================
+     DEPOIMENTOS
+     ============================================ */
+  .depoimentos{ background: var(--paper-deep); border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
+  .quotes-grid{ display:grid; grid-template-columns: repeat(3,1fr); gap: 30px; }
+  .quote-card{ background: var(--paper); border-radius: 12px; padding: 26px; }
+  .quote-top{ display:flex; align-items:center; gap: 12px; margin-bottom: 14px; }
+  .avatar{
+    width: 40px; height:40px; border-radius:50%;
+    background: var(--sage); color: var(--paper);
+    display:flex; align-items:center; justify-content:center;
+    font-family: var(--font-display); font-weight:700; font-size: 0.95rem;
+  }
+  .quote-name{ font-size: 0.88rem; color: var(--ink-soft); }
+  .quote-card blockquote{ margin:0; font-size: 0.98rem; color: var(--ink); }
+  .quotes-note{ margin-top: 30px; font-size: 0.82rem; color: var(--ink-soft); }
+
+  /* ============================================
+     OFERTA
+     ============================================ */
+  .oferta{ background: var(--wine-deep); color: var(--paper); }
+  .oferta-grid{ display:flex; justify-content:center; }
+  .oferta-card{ max-width: 560px; width:100%; text-align:center; }
+  .oferta h2{ color: var(--paper); }
+  .oferta-desc{ color: rgba(245,241,230,0.78); max-width: 46ch; margin: 0 auto 26px auto; }
+  .oferta-itens{ text-align:left; display:inline-block; margin: 0 auto 30px auto; }
+  .oferta-itens li{ display:flex; gap: 12px; padding: 10px 0; border-bottom: 1px solid rgba(245,241,230,0.16); color: rgba(245,241,230,0.92); }
+  .oferta-itens .check-mark{ color: var(--butter); }
+
+  .preco-box{ display:flex; flex-direction:column; align-items:center; gap:4px; margin-bottom: 30px; }
+  .preco-de{ text-decoration: line-through; color: rgba(245,241,230,0.5); font-size: 0.95rem; }
+  .preco-por{ font-family: var(--font-display); font-size: 3rem; color: var(--butter); font-weight: 700; }
+  .preco-por small{ font-size: 1.4rem; }
+  .preco-parcela{ color: rgba(245,241,230,0.7); font-size: 0.9rem; }
+  .oferta .btn-primary{ background: var(--butter); color: var(--wine-deep); }
+  .oferta .btn-primary:hover{ background: #d49f2f; }
+
+  .garantia-row{ display:flex; align-items:center; justify-content:center; gap:10px; margin-top: 20px; color: rgba(245,241,230,0.75); font-size: 0.88rem; }
+  .garantia-row .icon{ color: var(--butter); width:22px; height:22px; }
+
+  /* ============================================
+     AUTORIA
+     ============================================ */
+  .autoria-grid{ display:grid; grid-template-columns: 90px 1fr; gap: 30px; align-items:start; }
+  .autoria-marca{ width:70px; height:70px; border-radius:50%; background: var(--sage); color:var(--paper); font-family:var(--font-display); font-weight:700; font-size:1.2rem; display:flex; align-items:center; justify-content:center; }
+  .autoria-texto p{ color: var(--ink-soft); max-width: 64ch; }
+
+  /* ============================================
+     FAQ
+     ============================================ */
+  .faq{ background: var(--paper-deep); border-top:1px solid var(--line); }
+  .accordion{ border-top: 1px solid var(--line-strong); }
+  .acc-item{ border-bottom: 1px solid var(--line-strong); }
+  .acc-trigger{
+    width:100%; display:flex; align-items:center; justify-content:space-between; gap: 20px;
+    background:none; border:none; text-align:left; padding: 20px 0;
+    font-size: 1.02rem; font-weight: 700; color: var(--ink); font-family: var(--font-body);
+  }
+  .acc-icon{ position:relative; width: 16px; height:16px; flex-shrink:0; }
+  .acc-icon::before, .acc-icon::after{ content:""; position:absolute; background: var(--wine-deep); }
+  .acc-icon::before{ top:7px; left:0; width:16px; height:2px; }
+  .acc-icon::after{ top:0; left:7px; width:2px; height:16px; transition: transform 0.2s ease; }
+  .acc-trigger[aria-expanded="true"] .acc-icon::after{ transform: rotate(90deg); opacity:0; }
+  .acc-panel{ max-height:0; overflow:hidden; transition: max-height 0.28s ease; }
+  .acc-panel p{ color: var(--ink-soft); padding-bottom: 22px; margin:0; max-width: 62ch; }
+
+  /* ============================================
+     CTA FINAL / FOOTER
+     ============================================ */
+  .cta-final{ text-align:center; }
+  .cta-final-inner h2{ max-width: 22ch; margin: 0 auto 30px auto; }
+
+  .site-footer{ background: var(--wine-deep); color: rgba(245,241,230,0.65); padding: 40px 0; font-size: 0.85rem; }
+  .footer-brand{ color: var(--paper); font-weight:700; margin-bottom: 10px; font-family: var(--font-display); }
+  .footer-disclaimer{ max-width: 60ch; margin-bottom: 10px; }
+  .footer-copy{ margin:0; opacity:0.7; }
+
+  /* ============================================
+     RESPONSIVE
+     ============================================ */
+  @media (max-width: 900px){
+    .hero-grid{ grid-template-columns: 1fr; }
+    .hero-visual{ order:-1; }
+    .problema-grid{ grid-template-columns: 1fr; gap: 34px; }
+    .compare-grid{ grid-template-columns: 1fr; }
+    .bonus-grid{ grid-template-columns: 1fr; gap: 26px; }
+    .quotes-grid{ grid-template-columns: 1fr; gap: 20px; }
+    .autoria-grid{ grid-template-columns: 1fr; }
+    .section{ padding: 60px 0; }
+  }
+  @media (max-width: 520px){
+    body{ font-size: 16px; }
+    .wrap{ padding: 0 20px; }
+    .preco-por{ font-size: 2.3rem; }
+  }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="wrap topbar-inner">
+    <a href="#topo" class="brand">Do Susto à Rotina</a>
+    <a href="#oferta" class="btn btn-primary btn-sm">Quero o guia</a>
+  </div>
+</header>
+
+<main id="topo">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div class="hero-copy">
+        <span class="eyebrow">Guia visual · diabetes tipo 2</span>
+        <h1>O diagnóstico chegou de susto. A rotina não precisa continuar assim.</h1>
+        <p class="hero-lead">Um guia curto e ilustrado que transforma manhã, tarde e noite em uma rotina que você entende e consegue manter — sem depender de força de vontade o tempo todo.</p>
+        <div class="hero-actions">
+          <a href="#oferta" class="btn btn-primary btn-large">Ver o guia completo</a>
+          <a href="#capitulos" class="btn btn-outline">O que tem dentro</a>
+        </div>
+        <ul class="trust-row">
+          <li><strong>118</strong> páginas ilustradas</li>
+          <li><strong>4</strong> guias de bolso inclusos</li>
+          <li>Leitura em <strong>1 tarde</strong></li>
+        </ul>
+      </div>
+
+      <div class="hero-visual routine-ring" aria-hidden="true">
+        <svg viewBox="0 0 320 320" width="320" height="320">
+          <circle cx="160" cy="160" r="118" fill="none" stroke="#DCD2B8" stroke-width="2"/>
+          <circle cx="160" cy="160" r="118" fill="none" stroke="#7C9473" stroke-width="3" stroke-dasharray="6 10" stroke-linecap="round"/>
+
+          <!-- manhã -->
+          <g class="ring-node" transform="translate(160,30)">
+            <circle r="26" fill="#F5F1E6" stroke="#6E2A34" stroke-width="2"/>
+            <g class="ring-icon" transform="translate(-11,-11)" stroke="currentColor" stroke-width="1.6" fill="none">
+              <circle cx="11" cy="14" r="6"/>
+              <line x1="11" y1="2" x2="11" y2="5"/>
+              <line x1="2" y1="14" x2="5" y2="14"/>
+              <line x1="4" y1="6" x2="6.2" y2="8.2"/>
+              <line x1="18" y1="6" x2="15.8" y2="8.2"/>
+            </g>
+            <text x="0" y="42" text-anchor="middle">Manhã</text>
+          </g>
+
+          <!-- meio-dia -->
+          <g class="ring-node" transform="translate(290,160)">
+            <circle r="26" fill="#F5F1E6" stroke="#6E2A34" stroke-width="2"/>
+            <g class="ring-icon" transform="translate(-11,-11)" stroke="currentColor" stroke-width="1.6" fill="none">
+              <circle cx="11" cy="11" r="9"/>
+              <line x1="11" y1="11" x2="16" y2="11"/>
+              <line x1="6" y1="4" x2="6" y2="18"/>
+            </g>
+            <text x="0" y="46" text-anchor="middle">Prato</text>
+          </g>
+
+          <!-- noite -->
+          <g class="ring-node" transform="translate(160,290)">
+            <circle r="26" fill="#F5F1E6" stroke="#6E2A34" stroke-width="2"/>
+            <g class="ring-icon" transform="translate(-11,-11)" stroke="currentColor" stroke-width="1.6" fill="none">
+              <path d="M17,6 A8,8 0 1 0 17,17 A10,10 0 0 1 17,6 Z"/>
+            </g>
+            <text x="0" y="42" text-anchor="middle">Sono</text>
+          </g>
+
+          <!-- caminhada -->
+          <g class="ring-node" transform="translate(30,160)">
+            <circle r="26" fill="#F5F1E6" stroke="#6E2A34" stroke-width="2"/>
+            <g class="ring-icon" transform="translate(-11,-11)" stroke="currentColor" stroke-width="1.6" fill="none">
+              <circle cx="14" cy="3" r="2.4" fill="currentColor" stroke="none"/>
+              <path d="M10,8 L14,7 L18,10 L16,15 L19,20"/>
+              <path d="M14,7 L11,13 L7,16"/>
+            </g>
+            <text x="0" y="46" text-anchor="middle">Movimento</text>
+          </g>
+
+          <circle cx="160" cy="160" r="34" fill="#6E2A34"/>
+          <text x="160" y="156" text-anchor="middle" fill="#F5F1E6" font-family="Georgia, serif" font-size="12" font-weight="700">rotina</text>
+          <text x="160" y="171" text-anchor="middle" fill="#F5F1E6" font-family="Georgia, serif" font-size="12" font-weight="700">estável</text>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROBLEMA -->
+  <section class="section problema">
+    <div class="wrap problema-grid">
+      <div>
+        <h2>Se o seu dia hoje parece um pouco com isso...</h2>
+        <ul class="check-list">
+          <li>
+            <svg class="check-mark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M8 12l2.5 2.5L16 9"/></svg>
+            <span>Você mede a glicemia e não sabe explicar por que o número mudou.</span>
+          </li>
+          <li>
+            <svg class="check-mark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M8 12l2.5 2.5L16 9"/></svg>
+            <span>Tentou seguir uma dieta rígida e desistiu antes do fim do mês.</span>
+          </li>
+          <li>
+            <svg class="check-mark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M8 12l2.5 2.5L16 9"/></svg>
+            <span>Cada site diz uma coisa diferente sobre o que pode ou não pode comer.</span>
+          </li>
+          <li>
+            <svg class="check-mark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M8 12l2.5 2.5L16 9"/></svg>
+            <span>A consulta médica é curta demais para tirar todas as dúvidas.</span>
+          </li>
+        </ul>
+      </div>
+      <div>
+        <h2>...então isto pode ajudar</h2>
+        <p style="color:var(--ink-soft); font-size:1.05rem;">"Do Susto à Rotina" não é mais um artigo sobre diabetes. É um guia curto, ilustrado e organizado por momento do seu dia — manhã, prato principal, movimento e sono — para você parar de reagir a cada exame e passar a antecipar o que vem.</p>
+        <p class="disclaimer-inline" style="font-size:0.88rem; color:var(--ink-soft); border-left:2px solid var(--line-strong); padding-left:14px;">Material educativo. Não substitui consulta, exame ou prescrição médica — use ao lado do seu tratamento.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ANTES / DEPOIS -->
+  <section class="section comparativo">
+    <div class="wrap">
+      <h2 class="section-title">O que muda depois do guia</h2>
+      <div class="compare-grid">
+
+        <div class="compare-panel antes">
+          <svg viewBox="0 0 220 90" width="100%" height="90">
+            <line x1="10" y1="70" x2="210" y2="70" stroke="#DCD2B8" stroke-width="2"/>
+            <path d="M10,50 C 30,10 45,80 65,30 C 85,-5 95,75 115,40 C 130,15 140,65 160,35 C 175,15 185,55 205,30" fill="none" stroke="#B24A3A" stroke-width="3" stroke-linecap="round"/>
+          </svg>
+          <h3>Antes</h3>
+          <p>Picos imprevisíveis, decisões no impulso e a sensação de estar sempre um passo atrás do exame.</p>
+        </div>
+
+        <div class="compare-panel depois">
+          <svg viewBox="0 0 220 90" width="100%" height="90">
+            <line x1="10" y1="70" x2="210" y2="70" stroke="#DCD2B8" stroke-width="2"/>
+            <path d="M10,52 C 40,44 70,48 100,42 C 130,37 160,40 190,34 C 198,32 202,32 210,31" fill="none" stroke="#5A7052" stroke-width="3" stroke-linecap="round"/>
+          </svg>
+          <h3>Depois</h3>
+          <p>Uma rotina previsível, com folga para os dias fora do padrão — sem depender de força de vontade constante.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CAPÍTULOS -->
+  <section class="section capitulos" id="capitulos">
+    <div class="wrap">
+      <h2 class="section-title">O que você encontra no guia</h2>
+      <ol class="chapter-list">
+        <li class="chapter-item">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+          <div><h3>Seu primeiro raio-x da rotina</h3><p>Como mapear seus horários de sono, refeição e movimento em uma única página, antes de mudar qualquer coisa.</p></div>
+        </li>
+        <li class="chapter-item">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="8"/><line x1="12" y1="12" x2="16" y2="12"/><line x1="8" y1="6" x2="8" y2="18"/></svg>
+          <div><h3>O prato sem pesar nada</h3><p>Um método visual de montar refeições com o que já está na sua geladeira, sem calculadora.</p></div>
+        </li>
+        <li class="chapter-item">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 19h16"/><rect x="6" y="9" width="4" height="10"/><rect x="14" y="5" width="4" height="14"/></svg>
+          <div><h3>Rótulos e mercado</h3><p>Os três termos de embalagem que mais confundem — e o que olhar em 5 segundos.</p></div>
+        </li>
+        <li class="chapter-item">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="6" cy="18" r="1.6" fill="currentColor" stroke="none"/><path d="M3 13l4-1 4 3 4-5 4 5"/></svg>
+          <div><h3>Movimento que cabe na semana</h3><p>Caminhada e força simples, com opções para dias corridos e dias de energia baixa.</p></div>
+        </li>
+        <li class="chapter-item">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M20,14 A8,8 0 1 1 10,4 A10,10 0 0 0 20,14 Z"/></svg>
+          <div><h3>Sono e estresse escondidos</h3><p>Por que a glicemia sobe em dias "sem nada errado" — e três ajustes noturnos simples.</p></div>
+        </li>
+        <li class="chapter-item">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M8 4h8a2 2 0 0 1 2 2v14l-6-3-6 3V6a2 2 0 0 1 2-2z"/></svg>
+          <div><h3>A conversa com seu médico</h3><p>Um roteiro de perguntas para aproveitar melhor os minutos de consulta.</p></div>
+        </li>
+        <li class="chapter-item">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 12a8 8 0 1 0 16 0 8 8 0 0 0-16 0z"/><path d="M4 12h16"/></svg>
+          <div><h3>Sustentar depois do mês 1</h3><p>O plano para jantares fora, viagens e dias ruins, sem voltar à estaca zero.</p></div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- BÔNUS -->
+  <section class="section bonus">
+    <div class="wrap">
+      <h2 class="section-title">Junto com o guia, você leva</h2>
+      <div class="bonus-grid">
+        <div class="bonus-card">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="4" y="3" width="16" height="18" rx="2"/><line x1="8" y1="8" x2="16" y2="8"/><line x1="8" y1="12" x2="16" y2="12"/><line x1="8" y1="16" x2="12" y2="16"/></svg>
+          <h3>Planilha de rotina semanal</h3>
+          <p>Modelo simples para registrar glicemia, refeições e sono — para imprimir ou preencher no celular.</p>
+        </div>
+        <div class="bonus-card">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7l8-4z"/></svg>
+          <h3>Lista de troca inteligente</h3>
+          <p>32 trocas de ingredientes comuns por opções de menor impacto glicêmico, por refeição.</p>
+        </div>
+        <div class="bonus-card">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M8 4h8a2 2 0 0 1 2 2v14l-6-3-6 3V6a2 2 0 0 1 2-2z"/><line x1="9" y1="9" x2="15" y2="9"/><line x1="9" y1="13" x2="15" y2="13"/></svg>
+          <h3>Roteiro para a consulta</h3>
+          <p>Checklist de uma página com as perguntas certas para o endocrinologista ou nutricionista.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DEPOIMENTOS -->
+  <section class="section depoimentos">
+    <div class="wrap">
+      <h2 class="section-title">Quem já leu, conta assim</h2>
+      <div class="quotes-grid">
+        <div class="quote-card">
+          <div class="quote-top"><div class="avatar">R</div><span class="quote-name">Leitora, 54 anos</span></div>
+          <blockquote>Não sabia por onde começar depois do exame. Li em duas noites e já mudei o café da manhã na mesma semana.</blockquote>
+        </div>
+        <div class="quote-card">
+          <div class="quote-top"><div class="avatar">J</div><span class="quote-name">Leitor, 61 anos</span></div>
+          <blockquote>O capítulo sobre rótulos sozinho já valeu o guia. Anos comprando "integral" achando que era baixo em açúcar.</blockquote>
+        </div>
+        <div class="quote-card">
+          <div class="quote-top"><div class="avatar">M</div><span class="quote-name">Leitora, 47 anos</span></div>
+          <blockquote>Gostei de não ser mais uma dieta radical. É um jeito de organizar o que eu já sabia, mas nunca coloquei em prática.</blockquote>
+        </div>
+      </div>
+      <p class="quotes-note">Relatos ilustrativos de leitores do guia. Resultados individuais variam conforme quadro clínico e acompanhamento médico.</p>
+    </div>
+  </section>
+
+  <!-- OFERTA -->
+  <section class="section oferta" id="oferta">
+    <div class="wrap oferta-grid">
+      <div class="oferta-card">
+        <span class="eyebrow" style="border-color:rgba(245,241,230,0.4); color:var(--butter);">Acesso imediato em PDF</span>
+        <h2>Do Susto à Rotina</h2>
+        <p class="oferta-desc">O guia completo + os 3 bônus, para ler hoje e aplicar já amanhã de manhã.</p>
+        <ul class="oferta-itens">
+          <li><svg class="check-mark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M8 12l2.5 2.5L16 9"/></svg><span>Guia completo — 118 páginas, 7 capítulos ilustrados</span></li>
+          <li><svg class="check-mark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M8 12l2.5 2.5L16 9"/></svg><span>Planilha de rotina semanal</span></li>
+          <li><svg class="check-mark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M8 12l2.5 2.5L16 9"/></svg><span>Lista de troca inteligente (32 trocas)</span></li>
+          <li><svg class="check-mark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M8 12l2.5 2.5L16 9"/></svg><span>Roteiro para a consulta médica</span></li>
+        </ul>
+        <div class="preco-box">
+          <span class="preco-de">De R$ 97</span>
+          <span class="preco-por">R$ 47<small>,90</small></span>
+          <span class="preco-parcela">ou 4x de R$ 12,58</span>
+        </div>
+        <a href="#" class="btn btn-primary btn-large">Quero organizar minha rotina agora</a>
+        <div class="garantia-row">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3l7 3v6c0 5-3 8-7 9-4-1-7-4-7-9V6l7-3z"/><path d="M9 12l2 2 4-4"/></svg>
+          <span>Garantia de 7 dias — devolução sem perguntas</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- AUTORIA -->
+  <section class="section autoria">
+    <div class="wrap autoria-grid">
+      <div class="autoria-marca" aria-hidden="true">DSR</div>
+      <div class="autoria-texto">
+        <h2 class="section-title">Sobre este material</h2>
+        <p>Este guia foi escrito em conjunto com uma nutricionista clínica e revisado por um endocrinologista, com foco em linguagem simples e passos aplicáveis — não em promessas de cura. Ele foi pensado como o primeiro passo organizado depois do diagnóstico, para ser usado ao lado do seu acompanhamento médico, nunca no lugar dele.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section faq">
+    <div class="wrap narrow">
+      <h2 class="section-title">Perguntas frequentes</h2>
+      <div class="accordion" id="accordion">
+        <div class="acc-item">
+          <button class="acc-trigger" aria-expanded="false"><span>O guia substitui o acompanhamento médico?</span><span class="acc-icon" aria-hidden="true"></span></button>
+          <div class="acc-panel"><p>Não. É um material educativo para organizar rotina, alimentação e informação. Decisões sobre exames, medicação e tratamento continuam sendo do seu médico.</p></div>
+        </div>
+        <div class="acc-item">
+          <button class="acc-trigger" aria-expanded="false"><span>Serve para pré-diabetes ou diabetes tipo 1?</span><span class="acc-icon" aria-hidden="true"></span></button>
+          <div class="acc-panel"><p>O conteúdo tem foco em diabetes tipo 2 e pré-diabetes. Quem tem tipo 1 pode aproveitar os capítulos sobre alimentação e rotina, mas o monitoramento é pensado para o tipo 2.</p></div>
+        </div>
+        <div class="acc-item">
+          <button class="acc-trigger" aria-expanded="false"><span>Como recebo o material?</span><span class="acc-icon" aria-hidden="true"></span></button>
+          <div class="acc-panel"><p>Tudo em PDF, com acesso por e-mail logo após a confirmação do pagamento. Você pode ler no celular, tablet ou computador, e imprimir as planilhas.</p></div>
+        </div>
+        <div class="acc-item">
+          <button class="acc-trigger" aria-expanded="false"><span>E se eu não gostar?</span><span class="acc-icon" aria-hidden="true"></span></button>
+          <div class="acc-panel"><p>Você tem 7 dias corridos a partir da compra para pedir reembolso integral, sem precisar justificar.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA FINAL -->
+  <section class="section cta-final">
+    <div class="wrap narrow cta-final-inner">
+      <h2>Você não precisa decidir tudo hoje. Só precisa parar de adivinhar.</h2>
+      <a href="#oferta" class="btn btn-primary btn-large">Ver o guia completo</a>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p class="footer-brand">Do Susto à Rotina — materiais educativos sobre saúde metabólica</p>
+    <p class="footer-disclaimer">Este produto é um material educativo e não substitui diagnóstico, acompanhamento ou tratamento médico. Em caso de sintomas agudos, procure atendimento médico imediato.</p>
+    <p class="footer-copy">© 2026 Do Susto à Rotina. Todos os direitos reservados.</p>
+  </div>
+</footer>
+
+<script>
+  // FAQ — acordeão acessível (único item aberto por vez)
+  (function () {
+    var items = document.querySelectorAll(".acc-item");
+    items.forEach(function (item) {
+      var trigger = item.querySelector(".acc-trigger");
+      var panel = item.querySelector(".acc-panel");
+      if (!trigger || !panel) return;
+
+      trigger.addEventListener("click", function () {
+        var isOpen = trigger.getAttribute("aria-expanded") === "true";
+        items.forEach(function (other) {
+          if (other === item) return;
+          other.querySelector(".acc-trigger").setAttribute("aria-expanded", "false");
+          other.querySelector(".acc-panel").style.maxHeight = null;
+        });
+        trigger.setAttribute("aria-expanded", String(!isOpen));
+        panel.style.maxHeight = isOpen ? null : panel.scrollHeight + "px";
+      });
+    });
+  })();
+</script>
+</body>
+</html>
